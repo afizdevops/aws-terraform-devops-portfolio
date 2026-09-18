@@ -1,6 +1,6 @@
 variable "project_name" {
   type    = string
-  default = ""
+  default = "aws-devops-portfolio"
 }
 
 variable "aws_region" {
