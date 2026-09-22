@@ -18,3 +18,8 @@ output "web_server_url" {
   description = "Public URL of portfolio web server"
   value       = "http://${aws_instance.web.public_ip}"
 }
+
+output "application_url" {
+  description = "URL of the portfolio application"
+  value       = "http://${aws_lb.web.dns_name}"
+}

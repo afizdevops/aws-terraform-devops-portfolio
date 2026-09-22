@@ -4,6 +4,31 @@ resource "aws_security_group" "web" {
   vpc_id      = aws_vpc.main.id
 
   ingress {
+    description     = "Allow HTTP traffic"
+    from_port       = 80
+    to_port         = 80
+    protocol        = "tcp"
+    security_groups = [aws_security_group.alb.id]
+  }
+
+  egress {
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  tags = {
+    Name = "${var.project_name}-web-sg"
+  }
+}
+
+resource "aws_security_group" "alb" {
+  name        = "${var.project_name}-alb-sg"
+  description = "Allow HTTP traffic to ALB"
+  vpc_id      = aws_vpc.main.id
+
+  ingress {
     description = "Allow HTTP traffic"
     from_port   = 80
     to_port     = 80
@@ -19,9 +44,11 @@ resource "aws_security_group" "web" {
   }
 
   tags = {
-    Name = "${var.project_name}-web-sg"
+    Name = "${var.project_name}-alb-sg"
   }
 }
+
+
 
 
 
