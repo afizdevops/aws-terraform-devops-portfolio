@@ -32,3 +32,8 @@ variable "availability_zone_1b" {
   type    = string
   default = "us-east-1b"
 }
+
+variable "instance_type" {
+  type    = string
+  default = "t3.micro"
+}

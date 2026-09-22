@@ -13,3 +13,8 @@ output "private_subnet_id" {
 output "internet_gateway_id" {
   value = aws_internet_gateway.main.id
 }
+
+output "web_server_url" {
+  description = "Public URL of portfolio web server"
+  value       = "http://${aws_instance.web.public_ip}"
+}
