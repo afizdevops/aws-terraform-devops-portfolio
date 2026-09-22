@@ -4,4 +4,5 @@
 *.tfvars
 *.pem
 crash.log
+*.code-workspace
 
