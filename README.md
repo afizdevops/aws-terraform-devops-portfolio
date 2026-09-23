@@ -1,5 +1,3 @@
-</> Markdown
-
 # AWS Terraform Devops Portfolio
 
 [![Terraform CI](https://github.com/afizdevops/aws-terraform-devops-portfolio/actions/workflows/terraform.yaml/badge.svg)](https://github.com/afizdevops/aws-terraform-devops-portfolio/actions/workflows/terraform.yaml)
