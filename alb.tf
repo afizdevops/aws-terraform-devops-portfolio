@@ -25,7 +25,7 @@ resource "aws_lb_target_group_attachment" "web" {
   port             = 80
 }
 
-#t:ignore:AWS-0053 
+#tfsec:ignore:AWS-0053 
 resource "aws_lb" "web" {
   name                       = "${var.project_name}-alb"
   internal                   = false
