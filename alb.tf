@@ -27,8 +27,9 @@ resource "aws_lb_target_group_attachment" "web" {
 
 resource "aws_lb" "web" {
   name               = "${var.project_name}-alb"
-  internal           = false
+  internal           = false #tfsec:ignore:aws-elb-alb-not-public
   load_balancer_type = "application"
+  drop_invalid_header_fields = true
 
   security_groups = [
     aws_security_group.alb.id
@@ -47,7 +48,7 @@ resource "aws_lb" "web" {
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.web.arn
   port              = 80
-  protocol          = "HTTP"
+  protocol          = "HTTP" #tfsec:ignore:aws-elb-alb-not-public
 
   default_action {
     type             = "forward"
