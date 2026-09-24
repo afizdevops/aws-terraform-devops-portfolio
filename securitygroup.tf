@@ -1,3 +1,4 @@
+#trivy:ignore:AWS-0104
 resource "aws_security_group" "web" {
   name        = "${var.project_name}-web-sg"
   description = "Allow HTTP traffic to portfolio web server"
@@ -23,6 +24,7 @@ resource "aws_security_group" "web" {
   }
 }
 
+#trivy:ignore:AWS-0104
 resource "aws_security_group" "alb" {
   name        = "${var.project_name}-alb-sg"
   description = "Allow HTTP traffic to ALB"

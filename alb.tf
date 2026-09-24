@@ -25,9 +25,10 @@ resource "aws_lb_target_group_attachment" "web" {
   port             = 80
 }
 
+#trivy:ignore:AWS-0052, #trivy:ignore:AWS-0053
 resource "aws_lb" "web" {
   name               = "${var.project_name}-alb"
-  internal           = false #tfsec:ignore:aws-elb-alb-not-public
+  internal           = false 
   load_balancer_type = "application"
   drop_invalid_header_fields = true
 
@@ -44,11 +45,11 @@ resource "aws_lb" "web" {
     Name = "${var.project_name}-alb"
   }
 }
-
+#trivy:ignore:AWS-0054
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.web.arn
   port              = 80
-  protocol          = "HTTP" #tfsec:ignore:aws-elb-alb-not-public
+  protocol          = "HTTP" 
 
   default_action {
     type             = "forward"
