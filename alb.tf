@@ -26,7 +26,6 @@ resource "aws_lb_target_group_attachment" "web" {
 }
 
 #trivy:ignore:AWS-0052 
-#trivy:ignore:AWS-0053
 resource "aws_lb" "web" {
   name               = "${var.project_name}-alb"
   internal           = false 
