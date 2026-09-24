@@ -25,7 +25,8 @@ resource "aws_lb_target_group_attachment" "web" {
   port             = 80
 }
 
-#trivy:ignore:AWS-0052, #trivy:ignore:AWS-0053
+#trivy:ignore:AWS-0052 
+#trivy:ignore:AWS-0053
 resource "aws_lb" "web" {
   name               = "${var.project_name}-alb"
   internal           = false 
