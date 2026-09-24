@@ -25,11 +25,11 @@ resource "aws_lb_target_group_attachment" "web" {
   port             = 80
 }
 
-#trivy:ignore:AWS-0052 
+#t:ignore:AWS-0053 
 resource "aws_lb" "web" {
-  name               = "${var.project_name}-alb"
-  internal           = false 
-  load_balancer_type = "application"
+  name                       = "${var.project_name}-alb"
+  internal                   = false
+  load_balancer_type         = "application"
   drop_invalid_header_fields = true
 
   security_groups = [
@@ -45,11 +45,30 @@ resource "aws_lb" "web" {
     Name = "${var.project_name}-alb"
   }
 }
-#trivy:ignore:AWS-0054
+
 resource "aws_lb_listener" "http" {
   load_balancer_arn = aws_lb.web.arn
   port              = 80
-  protocol          = "HTTP" 
+  protocol          = "HTTP"
+
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+resource "aws_lb_listener" "https" {
+  load_balancer_arn = aws_lb.web.arn
+  port              = 443
+  protocol          = "HTTPS"
+  ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
+
+  certificate_arn = var.acm_certificate_arn
 
   default_action {
     type             = "forward"

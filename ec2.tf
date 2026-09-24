@@ -5,12 +5,12 @@ data "aws_ssm_parameter" "amazon_linux_ami" {
 
 #trivy:ignore:AWS-0131
 resource "aws_instance" "web" {
-  ami                    = data.aws_ssm_parameter.amazon_linux_ami.value
-  instance_type          = var.instance_type
+  ami           = data.aws_ssm_parameter.amazon_linux_ami.value
+  instance_type = var.instance_type
   metadata_options {
-    http_tokens   = "required"
+    http_tokens = "required"
   }
-  
+
   subnet_id              = aws_subnet.public_subnet.id
   vpc_security_group_ids = [aws_security_group.web.id]
 

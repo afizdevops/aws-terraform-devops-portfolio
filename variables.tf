@@ -42,3 +42,8 @@ variable "instance_type" {
   type    = string
   default = "t3.micro"
 }
+
+variable "acm_certificate_arn" {
+  description = "ARN of the ACM certificate used by the ALB HTTPS listener"
+  type        = string
+}
